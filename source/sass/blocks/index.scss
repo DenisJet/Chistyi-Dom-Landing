@@ -1,0 +1,27 @@
+.index__body {
+  height: 100%;
+  margin: 0 auto;
+
+  @include font (400, 16px, 26px, $basic-black);
+
+  @media (min-width: $tablet-width) {
+    font-size: 1.15rem;
+    line-height: 1.5rem;
+  }
+}
+
+.index__intro {
+  margin-bottom: 50px;
+}
+
+.index__services {
+  margin-bottom: 50px;
+}
+
+.index__how-it-works {
+  margin-top: 50px;
+}
+
+.index__equipment {
+  margin-top: 50px;
+}

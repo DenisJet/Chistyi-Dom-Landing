@@ -1,0 +1,73 @@
+.callback-form {
+  padding: 20px;
+  background-color: $basic-white;
+  border: 2px solid $button-color;
+  border-radius: 7px;
+  max-width: 390px;
+  margin-left: auto;
+  margin-right: auto;
+  @include font (500, 16px, 22px, $basic-black);
+  text-align: center;
+}
+
+.callback-form__title {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.callback-form__text {
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.callback-form__input {
+  margin-bottom: 25px;
+  padding: 10px;
+  border-color: $button-color;
+  border-radius: 7px;
+  width: 100%;
+  @include font (700, 20px, 26px, $basic-black);
+  text-align: center;
+
+  &::placeholder {
+    opacity: 0.3;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+.callback-form__button {
+  @include font(700, 20px, 20px, $basic-white);
+  border: none;
+  width: 100%;
+
+  & small {
+    font-size: 12px;
+  }
+}
+
+.success,
+.error {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-top: 200px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.success__message,
+.error__message {
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  @include font(500, 50px, 50px, $basic-white);
+}

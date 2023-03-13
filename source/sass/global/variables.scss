@@ -1,0 +1,32 @@
+// Colors
+$basic-black: #000000;
+$basic-white: #ffffff;
+$basic-blue: #0000ff;
+$light-blue: #1E90FF;
+$basic-green: #008000;
+$basic-orange: #ffa500;
+$background-color: #f2f4f6;
+$light-gray: #525252;
+$attention-color: rgb(251, 255, 0);
+
+$footer-background: #212121;
+$button-color: #32cd32;
+$footer-link-hover: gray;
+
+$secondary-green: rgba(0, 128, 0, 0.3);
+
+// Mixins
+
+@mixin font($f-weight, $f-size, $l-height, $color) {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-weight: $f-weight;
+  font-size: $f-size;
+  line-height: $l-height;
+  color: $color;
+}
+
+// Viewports
+
+$tablet-width: 700px;
+$desktop-width: 900px;
+$max-width: 1200px;

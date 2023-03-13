@@ -1,0 +1,29 @@
+.tasks {
+  padding: 50px 20px;
+  border-bottom: 2px solid $basic-green;
+  border-top: 2px solid $basic-green;
+  background-color: $background-color;
+
+  @media (min-width: $tablet-width) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.tasks__intro {
+  display: flex;
+  max-width: $max-width;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+
+  @media (min-width: $desktop-width) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.tasks__slogan {
+  max-width: 600px;
+}

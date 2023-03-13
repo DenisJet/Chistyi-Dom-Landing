@@ -1,0 +1,42 @@
+.stiky-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  @media (min-width: $tablet-width) {
+    display: none;
+  }
+}
+
+.stiky-footer__social-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.stiky-footer__social-item {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+ & img {
+   width: 50px;
+   height: 50px;
+ }
+
+ &--phone {
+   background-color: $basic-orange;
+ }
+
+ &--telegram {
+   background-color: $light-blue;
+ }
+
+ &--watsapp {
+   background-color: $basic-green;
+ }
+}

@@ -1,0 +1,58 @@
+.about-us {
+  border-top: 2px solid $basic-green;
+  border-bottom: 2px solid $basic-green;
+  text-align: center;
+  background-color: $background-color;
+}
+
+.about-us__slogan {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: $tablet-width) {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.about-us__list {
+  max-width: $max-width;
+  list-style-type: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+
+  @media (min-width: $desktop-width) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+.about-us__item {
+  position: relative;
+  padding-left: 40px;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 0;
+    background-image: url("../../img/about-us-chek.svg");
+    background-size: cover;
+  }
+}
+
+.about-us__item-title {
+  margin: 0;
+}
+
+.about-us__button {
+  margin-bottom: 55px;
+}

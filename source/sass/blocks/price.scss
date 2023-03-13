@@ -1,0 +1,174 @@
+.price {
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 50px;
+  border-top: 2px solid $basic-green;
+  border-bottom: 2px solid $basic-green;
+  background-color: $background-color;
+
+  @media (min-width: $tablet-width) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.price__intro {
+  display: flex;
+  flex-direction: column;
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: $desktop-width) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+  }
+}
+
+.price__title {
+  margin-top: 0;
+  margin-bottom: 20px;
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 50px;
+  }
+}
+
+.price__slogan {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.price__list {
+  max-width: $max-width;
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  @media (min-width: $tablet-width) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.price__item {
+  border: 2px solid $button-color;
+  border-radius: 15px;
+  background-color: $basic-white;
+  padding-bottom: 20px;
+  box-shadow: 5px 5px 5px 5px $footer-link-hover;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+
+  @media (min-width: $tablet-width) {
+    margin-right: 20px;
+    max-width: 300px;
+  }
+
+  &--form {
+    border: none;
+    padding: 0;
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+.price__item-info {
+  width: 100%;
+  height: 250px;
+  background-blend-mode: multiply;
+  color: $basic-white;
+  border-radius: 12px 12px 0 0;
+
+  &--rooms {
+    background: url("../../img/dezinsektor.jpg") no-repeat center / cover gray;
+  }
+
+  &--houses {
+    background: url("../../img/houses.jpg") no-repeat center / cover gray;
+  }
+
+  &--areas {
+    background: url("../../img/areas.jpg") no-repeat center / cover gray;
+  }
+
+  &--organizations {
+    background: url("../../img/organizations.jpg") no-repeat center / cover gray;
+
+    & .price__item-text {
+      padding-top: 20px;
+    }
+  }
+}
+
+.price__item-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 55px;
+  text-transform: uppercase;
+}
+
+.price__item-value {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.price__item-text {
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 0;
+  padding-bottom: 55px;
+}
+
+.price__item-advantages {
+  list-style-type: none;
+  text-align: left;
+  margin: 20px;
+  padding: 0;
+  color: $light-gray;
+
+  & li {
+    position: relative;
+    margin-bottom: 7px;
+    padding-left: 40px;
+  }
+
+  & li::before {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-image: url("../../img/ok-green-icon.png");
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+  }
+}
+
+.price__item-button {
+  background-color: $basic-white;
+  border: 2px solid $button-color;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  @include font(700, 16px, 26px, $button-color);
+}

@@ -1,0 +1,70 @@
+.services {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.services__title {
+  @include font(700, 22px, 32px, $basic-black);
+  padding: 0 20px 0 20px;
+  margin-top: 0;
+  margin-bottom: 35px;
+  text-align: center;
+  text-transform: uppercase;
+
+  @media (min-width: $tablet-width) {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+.services__list {
+  list-style-type: none;
+  padding: 0 20px;
+  text-align: center;
+  margin: 0;
+
+  @media (min-width: $desktop-width) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+.services__item {
+  position: relative;
+  padding-top: 75px;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 75px;
+    height: 75px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-size: contain;
+
+    @media (min-width: $tablet-width) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  &--dezinsection::before {
+    background-image: url("../../img/dezinsection.jpg");
+  }
+
+  &--deratization::before {
+    background-image: url("../../img/deratization.jpg");
+  }
+
+  &--dezinfection::before {
+    background-image: url("../../img/dezinfection.png");
+  }
+
+  @media (min-width: $tablet-width) {
+    padding-top: 100px;
+  }
+}

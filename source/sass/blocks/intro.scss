@@ -1,0 +1,153 @@
+.intro {
+  width: 100%;
+  height: auto;
+  border-top: solid 5px $basic-green;
+  border-bottom: solid 5px $basic-green;
+  background: url("../../img/intro-background.png") no-repeat center / cover gray;
+  background-blend-mode: multiply;
+  background-position: center 20%;
+
+  @media (min-width: $desktop-width) {
+    background-position: left 20%;
+  }
+}
+
+.intro__inner-container {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  padding-bottom: 75px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: $desktop-width) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+.intro__content {
+  text-align: center;
+  font-weight: 700;
+  color: $basic-white;
+  margin-bottom: 40px;
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 0;
+  }
+}
+
+.intro__slogan {
+  text-align: center;
+  margin-bottom: 40px;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 50px;
+  }
+
+  @media (min-width: $desktop-width) {
+    text-align: left;
+    grid-column: 1 / -1;
+  }
+}
+
+.intro__title {
+  @include font(700, 32px, 40px, $basic-white);
+  text-transform: uppercase;
+  margin: 0;
+  margin-bottom: 20px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 42px;
+    line-height: 55px;
+    text-align: left;
+  }
+}
+
+.intro__text {
+  @include font(700, 32px, 32px, $basic-white);
+  margin-top: 0;
+  margin-bottom: 0;
+
+  & span {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: $button-color;
+    @include font(700, 52px, 61px, $basic-white);
+
+    @media (min-width: $desktop-width) {
+      font-size: 60px;
+      line-height: 70px;
+    }
+  }
+}
+
+.intro__benefit-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 40px;
+  max-width: 420px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: $tablet-width) {
+    font-size: 22px;
+  }
+
+  @media (min-width: $desktop-width) {
+    text-align: left;
+    margin-left: 0;
+  }
+}
+
+.intro__benefit-item {
+  position: relative;
+  padding-top: 70px;
+
+  &::before {
+    position: absolute;
+    content: '';
+    width: 60px;
+    height: 60px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    mask-position: top left;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: $basic-white;
+
+    @media (min-width: $desktop-width) {
+      left: 30px;
+    }
+  }
+
+  &--master::before {
+    mask-image: url("../img/master.svg");
+  }
+
+  &--treaty::before {
+    mask-image: url("../img/treaty.svg");
+  }
+
+  &--guarantee::before {
+    mask-image: url("../img/guarantee.svg");
+  }
+
+  &--handshake::before {
+    mask-image: url("../img/handshake.svg");
+  }
+}

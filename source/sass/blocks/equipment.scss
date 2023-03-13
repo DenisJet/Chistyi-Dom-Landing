@@ -1,0 +1,77 @@
+.equipment {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.equipment__title {
+  margin-bottom: 50px;
+}
+
+.equipment__list {
+  list-style-type: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.equipment__item {
+  padding-top: 175px;
+  position: relative;
+  margin: 20px;
+  font-weight: 700;
+
+  @media (min-width: $desktop-width) {
+    padding-top: 225px;
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 175px;
+    height: 175px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    @media (min-width: $desktop-width) {
+      width: 225px;
+      height: 225px;
+    }
+  }
+
+  &--manual::before {
+    background-image: url("../../img/manual.jpg");
+  }
+
+  &--electro::before {
+    background-image: url("../../img/electro.jpg");
+  }
+
+  &--moto::before {
+    background-image: url("../../img/moto.jpg");
+  }
+
+  &--cold::before {
+    background-image: url("../../img/cold.jpg");
+  }
+
+  &--hot::before {
+    background-image: url("../../img/hot.jpg");
+  }
+
+  &--dry::before {
+    background-image: url("../../img/dry.jpg");
+  }
+
+  &--ozon::before {
+    background-image: url("../../img/ozon.jpg");
+  }
+}

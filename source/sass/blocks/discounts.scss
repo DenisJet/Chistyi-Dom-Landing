@@ -1,0 +1,127 @@
+.discounts {
+  padding-top: 50px;
+  border-top: 2px solid $basic-green;
+  border-bottom: 2px solid $basic-green;
+  background-color: $background-color;
+
+  & .discounts__container {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    @media (min-width: $tablet-width) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+}
+
+.discounts__title {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 50px;
+}
+
+.discounts__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+
+  @media (min-width: $tablet-width) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.discounts__item {
+  border: 2px solid $button-color;
+  border-radius: 15px;
+  background-color: $basic-white;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 350px;
+  min-height: 500px;
+  box-shadow: 5px 5px 5px 5px $footer-link-hover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  @media (min-width: $tablet-width) {
+    margin-right: 20px;
+  }
+
+  &--newcomers {
+    background: linear-gradient(to top, $basic-white, transparent),
+      url("../../img/newcomers.jpg") no-repeat center / cover;
+  }
+
+  &--pensioner {
+    background: linear-gradient(to top, $basic-white, transparent),
+      url("../../img/pensioner.jpg") no-repeat center / cover;
+  }
+
+  &--collective {
+    background: linear-gradient(to top, $basic-white, transparent),
+      url("../../img/collective.png") no-repeat center / cover;
+  }
+}
+
+.discounts__item-title {
+  text-transform: uppercase;
+}
+
+.discounts__item-text {
+  font-weight: 500;
+}
+
+.discounts__item-button {
+  font-size: 18px;
+}
+
+.discounts__call-to-action {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: $button-color;
+  text-align: center;
+  border-top: 2px solid $basic-green;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    max-width: $max-width;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: $desktop-width) {
+      flex-direction: row;
+    }
+  }
+
+  & p {
+    margin: 0;
+    margin-bottom: 20px;
+    @include font(700, 24px, 32px, $basic-white);
+    max-width: 500px;
+    text-transform: uppercase;
+
+    @media (min-width: $desktop-width) {
+      margin-bottom: 0;
+    }
+  }
+
+  & .button {
+    color: $basic-green;
+    background-color: $basic-white;
+    border: 2px solid $basic-green;
+  }
+}

@@ -1,0 +1,66 @@
+.footer {
+  background-color:	$footer-background;
+}
+
+.footer__container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px 10px 25px 10px;
+  color: $basic-white;
+  @include font(300, 14px, 22px, $basic-white);
+
+  @media (min-width: $desktop-width) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.footer__item {
+  margin-bottom: 15px;
+}
+
+.footer__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__title {
+  @include font(400, 16px, 26px, $button-color);
+  margin-top: 0;
+  margin-bottom: 5px;
+
+  & .footer__link {
+    @include font(400, 16px, 26px, $button-color);
+  }
+}
+
+.footer__text {
+  margin: 0;
+}
+
+.footer__link {
+  color: $basic-white;
+  display: inline-block;
+  text-decoration: none;
+
+  &--mail {
+    font-size: 16px;
+  }
+
+  &:hover {
+    color: $footer-link-hover;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+}
+
+.footer__link-icon {
+  margin-right: 5px;
+}

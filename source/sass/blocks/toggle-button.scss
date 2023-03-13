@@ -1,0 +1,33 @@
+.toggle-button {
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+
+  &__bar1,
+  &__bar2,
+  &__bar3 {
+    width: 35px;
+    height: 3px;
+    background-color: $basic-black;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+}
+
+.toggle-button--opened {
+  & .toggle-button__bar1 {
+    transform: rotate(-45deg) translate(-6px, 7px);
+  }
+
+  & .toggle-button__bar2 {
+    opacity: 0;
+  }
+
+  & .toggle-button__bar3 {
+    transform: rotate(45deg) translate(-6px, -7px);
+  }
+}
+
+.toggle-button--nojs {
+  display: none;
+}
+
