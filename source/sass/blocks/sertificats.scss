@@ -1,25 +1,47 @@
 .sertificats {
-  background-color: $background-color;
-  border-top: solid 2px $basic-green;
-}
-
-.sertificats__title {
+  max-width: $max-width;
   text-align: center;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 50px;
   margin-top: 50px;
-  margin-bottom: 35px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: $tablet-width) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 
-.sertificats__slider-list {
+.sertificats__title {
+  margin-bottom: 50px;
+}
+
+
+.sertificats__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
   list-style-type: none;
   padding: 0;
+  margin-bottom: 0;
 }
 
-.sertificats__slider-item {
-  display: none;
+.sertificats__item {
+  width: 100px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: 1s;
 
-  &--current {
-    display: block;
+  & img {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  &:hover {
+    transform: scale(1.3);
+    transition: 1s;
   }
 }

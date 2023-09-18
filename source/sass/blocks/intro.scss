@@ -72,6 +72,10 @@
   }
 }
 
+.intro__location {
+  @include font(700, 32px, 40px, $basic-white);
+}
+
 .intro__text {
   @include font(700, 32px, 32px, $basic-white);
   margin-top: 0;

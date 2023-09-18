@@ -1,0 +1,28 @@
+.thanks__body {
+  margin: 0;
+}
+
+.thanks__message {
+  width: 100%;
+  height: auto;
+  font-family: "Roboto", "Arial", sans-serif;
+  background: url("../../img/intro-background.png") no-repeat center / cover gray;
+  background-blend-mode: multiply;
+  background-position: center 20%;
+  text-align: center;
+  padding: 50px 20px;
+  height: 100vh;
+  margin-top: 0;
+  margin-bottom: auto;
+  color: $basic-white;
+}
+
+.thanks__title {
+  font-size: 42px;
+  margin-top: 100px;
+}
+
+.thanks__text {
+  font-size: 32px;
+  margin-bottom: 100px;
+}

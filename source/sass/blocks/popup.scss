@@ -1,0 +1,133 @@
+.pop-up {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: 2;
+  transform:  scale(0);
+  transition: .6s ease-in-out;
+
+  &--active {
+    transform:  scale(100%);
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.pop-up__container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 100px;
+  max-width: 400px;
+  background-color: $basic-white;
+  border-radius: 2px;
+  text-align: center;
+  padding: 30px 20px;
+  position: relative;
+  ;
+}
+
+.pop-up__text {
+  @include font(500, 22px, 28px, $basic-black)
+}
+
+.pop-up__tel-text {
+  margin-bottom: 10px;
+  @include font(400, 18px, 22px, $basic-black)
+}
+
+.pop-up__form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.pop-up__input {
+  margin-bottom: 25px;
+  padding: 10px;
+  border-color: $button-color;
+  border-radius: 7px;
+  width: 100%;
+  @include font (700, 20px, 26px, $basic-black);
+  text-align: center;
+
+  &::placeholder {
+    opacity: 0.3;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+.pop-up__button {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-top: 30px;
+
+  @include font(700, 22px, 32px, $basic-white);
+  background-color: $button-color;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+}
+
+.pop-up__tel {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-decoration: none;
+  padding-left: 35px;
+  font-weight: 700;
+  font-size: 20px;
+  color: $button-color;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 25px;
+    height: 25px;
+    top: 0;
+    left: 0;
+    background-image: url("../../img/icon-phone.svg");
+    background-size: contain;
+    background-position: center;
+  }
+
+  &:hover {
+    opacity: 0.3;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.pop-up__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: $button-color;
+  font-size: 22px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.3;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}

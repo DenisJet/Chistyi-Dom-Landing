@@ -2,10 +2,12 @@
   display: inline-block;
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
 
   @include font(700, 22px, 32px, $basic-white);
   background-color: $button-color;
   padding: 10px 20px;
+  border: none;
   border-radius: 5px;
 
   &:hover {
