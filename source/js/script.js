@@ -97,31 +97,31 @@ const CHAT_ID = "-1001650046621";
 const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
 const formHandler = (formId) => {
-  document.getElementById(formId).addEventListener('submit', function (evt) {
+  document.getElementById(formId).addEventListener("submit", function (evt) {
     evt.preventDefault();
 
     let message = `<b>Заявка с сайта СЭС Чистый дом</b>\n`;
     message += `<b>Номер телефона: </b> ${this.number.value}\n`;
     console.log(message);
 
-    axios.post(URI_API, {
-      chat_id: CHAT_ID,
-      parse_mode: 'html',
-      text: message
-    })
+    axios
+      .post(URI_API, {
+        chat_id: CHAT_ID,
+        parse_mode: "html",
+        text: message,
+      })
       .then((response) => {
-        this.number.value = '';
-        window.location = '../thanks.html';
+        this.number.value = "";
+        window.location = "../thanks.html";
       })
-      .catch(() => {
-      })
-  })
-}
+      .catch(() => {});
+  });
+};
 
-formHandler('intro-form');
-formHandler('price-form');
-formHandler('works-form');
-formHandler('pop-up-form');
+formHandler("intro-form");
+formHandler("price-form");
+formHandler("works-form");
+formHandler("pop-up-form");
 
 // Геолокация
 
@@ -154,115 +154,123 @@ formHandler('pop-up-form');
 //       .catch();
 //   });
 
-window.onload = () => {
-  if (ymaps.geolocation.region) {
-    document.getElementById('location').innerHTML = ymaps.geolocation.region;
-    document.getElementById('intro-location').innerHTML = ymaps.geolocation.region;
-  }
-}
+// window.onload = () => {
+//   if (ymaps.geolocation.region) {
+//     document.getElementById('location').innerHTML = ymaps.geolocation.region;
+//     document.getElementById('intro-location').innerHTML = ymaps.geolocation.region;
+//   }
+// }
 
 // sertificats slider
 
-const sertificats = document.querySelectorAll('.sertificats__item');
-const slider = document.querySelector('.slider-sertificats');
-const sliderContainer = slider.querySelector('.slider-sertificats__container');
-const slides = slider.querySelectorAll('.slider-sertificats__item');
-const closeButton = slider.querySelector('.slider-sertificats__button--close');
-const sliderButtonPrev = slider.querySelector('.slider-sertificats__swiper-button--prev')
-const sliderButtonNext = slider.querySelector('.slider-sertificats__swiper-button--next')
+const sertificats = document.querySelectorAll(".sertificats__item");
+const slider = document.querySelector(".slider-sertificats");
+const sliderContainer = slider.querySelector(".slider-sertificats__container");
+const slides = slider.querySelectorAll(".slider-sertificats__item");
+const closeButton = slider.querySelector(".slider-sertificats__button--close");
+const sliderButtonPrev = slider.querySelector(
+  ".slider-sertificats__swiper-button--prev"
+);
+const sliderButtonNext = slider.querySelector(
+  ".slider-sertificats__swiper-button--next"
+);
 
 const escKeyHandler = (evt) => {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
+  if (evt.key === "Escape" || evt.key === "Esc") {
     closePopup();
   }
-}
+};
 
 const windowClickHandler = (evt) => {
-  if (!evt.composedPath().includes(sliderContainer) && !evt.composedPath().includes(sliderButtonPrev) && !evt.composedPath().includes(sliderButtonNext)) {
+  if (
+    !evt.composedPath().includes(sliderContainer) &&
+    !evt.composedPath().includes(sliderButtonPrev) &&
+    !evt.composedPath().includes(sliderButtonNext)
+  ) {
     closePopup();
   }
 };
 
 const closeButtonHandler = () => {
   closePopup();
-}
+};
 
 const openPopup = () => {
-  slider.classList.add('slider-sertificats--active');
-  document.addEventListener('keydown', escKeyHandler);
-  slider.addEventListener('click', windowClickHandler);
-  closeButton.addEventListener('click', closeButtonHandler);
-}
+  slider.classList.add("slider-sertificats--active");
+  document.addEventListener("keydown", escKeyHandler);
+  slider.addEventListener("click", windowClickHandler);
+  closeButton.addEventListener("click", closeButtonHandler);
+};
 
 const closePopup = () => {
-  slider.classList.remove('slider-sertificats--active');
-  document.removeEventListener('keydown', escKeyHandler);
-  slider.removeEventListener('click', windowClickHandler);
-  closeButton.removeEventListener('click', closeButtonHandler);
-}
+  slider.classList.remove("slider-sertificats--active");
+  document.removeEventListener("keydown", escKeyHandler);
+  slider.removeEventListener("click", windowClickHandler);
+  closeButton.removeEventListener("click", closeButtonHandler);
+};
 
 sertificats.forEach((sertificat) => {
-  sertificat.addEventListener('click', () => {
+  sertificat.addEventListener("click", () => {
     openPopup();
-  })
-})
+  });
+});
 
-new Swiper('.slider-sertificats__swiper', {
+new Swiper(".slider-sertificats__swiper", {
   loop: true,
   spaceBetween: 20,
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
-})
+});
 
 // works slider
 
-new Swiper('.works__swiper', {
+new Swiper(".works__swiper", {
   loop: true,
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
 });
 
 // reviews slider
 
-new Swiper('.reviews__swiper', {
+new Swiper(".reviews__swiper", {
   loop: true,
   slidesPerView: 1,
   spaceBetween: 10,
   breakpoints: {
     600: {
       slidesPerView: 2,
-      spaceBetween: 10
+      spaceBetween: 10,
     },
     880: {
       slidesPerView: 3,
-      spaceBetween: 10
+      spaceBetween: 10,
     },
     1150: {
       slidesPerView: 4,
-      spaceBetween: 10
-    }
+      spaceBetween: 10,
+    },
   },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
 });
 
 // popup form
 
-const popup = document.querySelector('.pop-up');
-const popupContainer =popup.querySelector('.pop-up__container');
-const popupCloseButton = popup.querySelector('.pop-up__close');
+const popup = document.querySelector(".pop-up");
+const popupContainer = popup.querySelector(".pop-up__container");
+const popupCloseButton = popup.querySelector(".pop-up__close");
 
 const escPopupKeyHandler = (evt) => {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
+  if (evt.key === "Escape" || evt.key === "Esc") {
     closePopupForm();
   }
-}
+};
 
 const clickHandler = (evt) => {
   if (!evt.composedPath().includes(popupContainer)) {
@@ -271,22 +279,22 @@ const clickHandler = (evt) => {
 };
 
 const openPopupForm = () => {
-  popup.classList.add('pop-up--active');
-  document.addEventListener('keydown', escPopupKeyHandler);
-  popup.addEventListener('click', clickHandler);
-}
+  popup.classList.add("pop-up--active");
+  document.addEventListener("keydown", escPopupKeyHandler);
+  popup.addEventListener("click", clickHandler);
+};
 
 const closePopupForm = () => {
-  popup.classList.remove('pop-up--active');
-  document.removeEventListener('keydown', escPopupKeyHandler);
-}
+  popup.classList.remove("pop-up--active");
+  document.removeEventListener("keydown", escPopupKeyHandler);
+};
 
-document.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('button-open-popup-form')) {
+document.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("button-open-popup-form")) {
     openPopupForm();
   }
-})
+});
 
-popupCloseButton.addEventListener('click', () => {
+popupCloseButton.addEventListener("click", () => {
   closePopupForm();
-})
+});
