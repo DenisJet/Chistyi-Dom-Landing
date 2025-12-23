@@ -100,7 +100,7 @@ const formHandler = (formId) => {
   document.getElementById(formId).addEventListener("submit", function (evt) {
     evt.preventDefault();
 
-    let message = `<b>Заявка с сайта СЭС Чистый дом</b>\n`;
+    let message = `<b>Заявка с сайта СЭС Чистый дом {{CITY_NAME}}</b>\n`;
     message += `<b>Номер телефона: ${this.number.value}\n  </b> HoneyPot: ${this.honeypot.value}`;
 
     axios
@@ -298,3 +298,35 @@ document.addEventListener("click", (evt) => {
 popupCloseButton.addEventListener("click", () => {
   closePopupForm();
 });
+
+// set year
+
+function replaceYearInDocument() {
+  // Получаем текущий год
+  const currentYear = new Date().getFullYear().toString();
+
+  // Регулярное выражение для поиска конкретно 2023 года
+  const yearRegex = /\b2024\b/g;
+
+  // Рекурсивная функция для обхода всех узлов
+  function walkNodes(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      // Если узел текстовый, проверяем на наличие года
+      if (yearRegex.test(node.nodeValue)) {
+        // Заменяем все вхождения года на текущий
+        node.nodeValue = node.nodeValue.replace(yearRegex, currentYear);
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      // Если элемент, проверяем его дочерние узлы
+      for (let child of node.childNodes) {
+        walkNodes(child);
+      }
+    }
+  }
+
+  // Начинаем обход с body (или другого элемента)
+  walkNodes(document.body);
+}
+
+// Вызываем функцию при загрузке страницы
+document.addEventListener("DOMContentLoaded", replaceYearInDocument);
