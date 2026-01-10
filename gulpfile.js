@@ -13,16 +13,10 @@ const webp = require("gulp-webp");
 const svgstore = require("gulp-svgstore");
 const del = require("del");
 const sync = require("browser-sync").create();
-const replace = require("gulp-replace");
-const citiesConfig = require("./cities-config");
 
-// Clean
-const clean = () => {
-  return del("build");
-};
+// Styles
 
-// Функция для обработки стилей для конкретного города
-const stylesForCity = (city) => {
+const styles = () => {
   return gulp
     .src("source/sass/style.scss")
     .pipe(plumber())
@@ -31,56 +25,39 @@ const stylesForCity = (city) => {
     .pipe(postcss([autoprefixer(), csso()]))
     .pipe(rename("style.min.css"))
     .pipe(sourcemap.write("."))
-    .pipe(gulp.dest(`build/${city.code}/css`))
+    .pipe(gulp.dest("build/css"))
     .pipe(sync.stream());
 };
 
-// Функция для обработки скриптов для конкретного города
-const scriptsForCity = (city) => {
+exports.styles = styles;
+
+// Html
+
+const html = () => {
+  return gulp
+    .src("source/*.html")
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest("build"));
+};
+
+//Scripts
+
+const scripts = () => {
   return gulp
     .src("source/js/script.js")
-    .pipe(replace(/{{CITY_NAME}}/g, city.name))
-    .pipe(replace(/{{CITY_CODE}}/g, city.code))
-    .pipe(replace(/{{CITY_CASE}}/g, city.case))
     .pipe(terser())
     .pipe(rename("script.min.js"))
-    .pipe(gulp.dest(`build/${city.code}/js`))
+    .pipe(gulp.dest("build/js"))
     .pipe(sync.stream());
 };
 
-// Функция для обработки HTML для конкретного города
-const htmlForCity = (city) => {
-  return gulp
-    .src(["source/**/*.html", "!source/statji/**"]) // ИСКЛЮЧАЕМ HTML из statji
-    .pipe(replace(/{{CITY_NAME}}/g, city.name))
-    .pipe(replace(/{{CITY_CODE}}/g, city.code))
-    .pipe(replace(/{{CITY_CASE}}/g, city.case))
-    .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest(`build/${city.code}`));
-};
+exports.scripts = scripts;
 
-// Копирование ресурсов для конкретного города
-const copyForCity = (city) => {
-  return gulp
-    .src(
-      [
-        "source/fonts/*.{woff2,woff}",
-        "source/*.ico",
-        "source/img/**/*.svg",
-        "!source/img/icons/*.svg",
-        "!source/statji/**", // ИСКЛЮЧАЕМ всю папку statji
-      ],
-      {
-        base: "source",
-      }
-    )
-    .pipe(gulp.dest(`build/${city.code}`));
-};
+// Images
 
-// Оптимизация изображений для города
-const optimizeImagesForCity = (city) => {
+const optimizeImages = () => {
   return gulp
-    .src(["source/img/**/*.{png,jpg,svg,jpeg}", "!source/statji/**"]) // ИСКЛЮЧАЕМ statji
+    .src("source/img/**/*.{png,jpg,svg}")
     .pipe(
       imagemin([
         imagemin.mozjpeg({ progressive: true }),
@@ -88,19 +65,31 @@ const optimizeImagesForCity = (city) => {
         imagemin.svgo(),
       ])
     )
-    .pipe(gulp.dest(`build/${city.code}/img`));
+    .pipe(gulp.dest("build/img"));
 };
 
-// WebP для города
-const createWebpForCity = (city) => {
+exports.images = optimizeImages;
+
+const copyImages = () => {
+  return gulp.src("source/img/**/*.{png,jpg,svg}").pipe(gulp.dest("build/img"));
+};
+
+exports.images = copyImages;
+
+// WebP
+
+const createWebp = () => {
   return gulp
-    .src(["source/img/**/*.{jpg,png,jpeg}", "!source/statji/**"]) // ИСКЛЮЧАЕМ statji
+    .src("source/img/**/*.{jpg,png}")
     .pipe(webp({ quality: 90 }))
-    .pipe(gulp.dest(`build/${city.code}/img`));
+    .pipe(gulp.dest("build/img"));
 };
 
-// Sprite для города
-const spriteForCity = (city) => {
+exports.createWebp = createWebp;
+
+// Sprite
+
+const sprite = () => {
   return gulp
     .src("source/img/icons/*.svg")
     .pipe(
@@ -109,45 +98,45 @@ const spriteForCity = (city) => {
       })
     )
     .pipe(rename("sprite.svg"))
-    .pipe(gulp.dest(`build/${city.code}/img`));
+    .pipe(gulp.dest("build/img"));
 };
 
-// Основные задачи для каждого города
-const processCity = (city) => {
-  return gulp.series(
-    (done) => {
-      console.log(`Обработка города: ${city.name}`);
-      done();
-    },
-    gulp.parallel(
-      () => stylesForCity(city),
-      () => scriptsForCity(city),
-      () => htmlForCity(city),
-      () => copyForCity(city),
-      () => optimizeImagesForCity(city),
-      () => createWebpForCity(city),
-      () => spriteForCity(city)
+exports.sprite = sprite;
+
+// Copy
+
+const copy = (done) => {
+  gulp
+    .src(
+      [
+        "source/fonts/*.{woff2,woff}",
+        "source/*.ico",
+        "source/img/**/*.svg",
+        "!source/img/icons/*.svg",
+        "source/video/*.mp4",
+      ],
+      {
+        base: "source",
+      }
     )
-  );
+    .pipe(gulp.dest("build"));
+  done();
 };
 
-// Создаем отдельные задачи для каждого города
-citiesConfig.forEach((city) => {
-  gulp.task(`build-${city.code}`, processCity(city));
-});
+exports.copy = copy;
 
-// Основная сборка для всех городов
-const buildAllCities = gulp.series(
-  clean,
-  gulp.parallel(...citiesConfig.map((city) => `build-${city.code}`))
-);
+// Clean
 
-// Server для разработки (первый город по умолчанию)
+const clean = () => {
+  return del("build");
+};
+
+// Server
+
 const server = (done) => {
-  const defaultCity = citiesConfig[0].code;
   sync.init({
     server: {
-      baseDir: `build/${defaultCity}`,
+      baseDir: "build",
     },
     cors: true,
     notify: false,
@@ -156,29 +145,40 @@ const server = (done) => {
   done();
 };
 
-// Watcher для разработки
-const watcher = () => {
-  const defaultCity = citiesConfig[0].code;
-  gulp.watch("source/sass/**/*.scss", gulp.series(`build-${defaultCity}`));
-  gulp.watch("source/js/script.js", gulp.series(`build-${defaultCity}`));
-  gulp.watch(
-    ["source/**/*.html", "!source/statji/**"],
-    gulp.series(`build-${defaultCity}`)
-  );
-};
+exports.server = server;
 
 // Reload
+
 const reload = (done) => {
   sync.reload();
   done();
 };
 
-// Экспорты
-exports.clean = clean;
-exports.build = buildAllCities;
+// Watcher
 
-// Default task (для разработки - первый город)
+const watcher = () => {
+  gulp.watch("source/sass/**/*.scss", gulp.series(styles));
+  gulp.watch("source/js/script.js", gulp.series(scripts));
+  gulp.watch("source/*.html", gulp.series(html, reload));
+};
+
+// Build
+
+const build = gulp.series(
+  clean,
+  copy,
+  optimizeImages,
+  gulp.parallel(styles, html, scripts, sprite, createWebp)
+);
+
+exports.build = build;
+
+// Default
+
 exports.default = gulp.series(
-  `build-${citiesConfig[0].code}`,
+  clean,
+  copy,
+  copyImages,
+  gulp.parallel(styles, html, scripts, sprite, createWebp),
   gulp.series(server, watcher)
 );
